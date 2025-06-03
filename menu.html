@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu BakeUri | Korean Cake</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Container utama */
+    .menu-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Header halaman */
+    h1 {
+      text-align: center;
+      color: #d6336c;
+      margin-bottom: 2rem;
+    }
+
+    /* Sidebar sub-menu */
+    .menu-sidebar {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .menu-tab {
+      cursor: pointer;
+      padding: 0.6rem 1.5rem;
+      border-radius: 30px;
+      border: 2px solid #d6336c;
+      background-color: white;
+      color: #d6336c;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .menu-tab.active,
+    .menu-tab:hover {
+      background: linear-gradient(135deg, #f28ab2, #d6336c);
+      color: white;
+      box-shadow: 0 6px 14px rgba(242, 138, 178, 0.5);
+      border-color: transparent;
+    }
+
+    /* Container daftar menu */
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    /* Kartu menu item */
+    .menu-card {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(214, 51, 108, 0.15);
+      background: white;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(214, 51, 108, 0.3);
+    }
+
+    .menu-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .menu-content {
+      padding: 1rem 1.3rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #d6336c;
+    }
+
+    .menu-desc {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+      line-height: 1.4;
+    }
+
+    /* Styling khusus untuk tanggal PO */
+    .menu-po-date {
+      margin-top: 0.7rem;
+      font-size: 0.9rem;
+      color: #d6336c;
+      font-weight: 600;
+    }
+    /* Tombol Pesan Sekarang mint di sebelah kanan */
+.order-button {
+  margin-left: auto;
+  background-color: #98ffb3; /* warna mint */
+  color: #004d00;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #4caf50;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.order-button:hover {
+  background-color: #70d68c;
+  color: white;
+  border-color: #2e7d32;
+}
+  </style>
+</head>
+<body>
+  <div class="menu-container">
+    <h1>Menu BakeUri</h1>
+    <div class="menu-sidebar">
+      <div class="menu-tab active" data-menu="tteok">Tteok Series (Kue Beras Korea)</div>
+      <div class="menu-tab" data-menu="street">Street Bakery</div>
+      <div class="menu-tab" data-menu="cafe">Cafe Style Korean Bread</div>
+      <div class="menu-tab" data-menu="po">Seasonal & PO Only</div>
+      <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan.
+" target="_blank" class="order-button">Pesan Sekarang</a>
+    </div>
+
+    <div id="menu-list" class="menu-list">
+      <!-- Daftar menu akan muncul di sini -->
+    </div>
+  </div>
+
+  <script>
+    const menus = {
+      tteok: [
+        {
+          name: "Injeolmi",
+          image: "images/injeolmi.jpg",
+          desc: "Kue beras tradisional Korea dengan taburan kacang kedelai panggang yang harum dan tekstur kenyal.",
+        },
+        {
+          name: "Songpyeon",
+          image: "images/songpyeon.jpg",
+          desc: "Kue beras berbentuk setengah bulan yang diisi dengan pasta kacang manis, khas saat Chuseok.",
+        },
+        {
+          name: "Baekseolgi",
+          image: "images/baekseolgi.jpg",
+          desc: "Kue beras kukus putih yang lembut dan ringan, cocok untuk berbagai acara spesial.",
+        },
+        {
+          name: "Mugwort Tteok",
+          image: "images/mugwort-tteok.jpg",
+          desc: "Kue beras hijau alami dengan ekstrak mugwort yang menyehatkan dan rasa unik.",
+        }
+      ],
+      street: [
+        {
+          name: "Hotteok",
+          image: "images/hotteok.jpg",
+          desc: "Pancake manis isi gula merah dan kacang, favorit jajanan jalanan Korea.",
+        },
+        {
+          name: "Bungeoppang",
+          image: "images/bungeoppang.jpg",
+          desc: "Kue ikan berbentuk ikan dengan isi kacang merah manis, hangat dan renyah.",
+        },
+        {
+          name: "Kkwabaegi",
+          image: "images/kkwabaegi.jpg",
+          desc: "Donat tradisional Korea berpilin dengan taburan gula halus yang lezat.",
+        },
+        {
+          name: "Croffle versi Korea",
+          image: "images/croffle.jpg",
+          desc: "Perpaduan croissant dan waffle dengan tekstur renyah dan lembut.",
+        }
+      ],
+      cafe: [
+        {
+          name: "Cream Cheese Garlic Bread",
+          image: "images/cream-cheese-garlic-bread.jpg",
+          desc: "Roti lembut dengan baluran cream cheese dan aroma bawang putih yang menggoda.",
+        },
+        {
+          name: "Mochi Bread",
+          image: "images/mochi-bread.jpg",
+          desc: "Roti kenyal ala mochi dengan isian manis yang meleleh di mulut.",
+        },
+        {
+          name: "Soboro-ppang",
+          image: "images/soboro-ppang.jpg",
+          desc: "Roti manis dengan topping remah-remah renyah khas Korea.",
+        },
+        {
+          name: "Sweet Potato Bread",
+          image: "images/sweet-potato-bread.jpg",
+          desc: "Roti isi ubi manis yang lembut dan gurih.",
+        },
+        {
+          name: "Pandan Milk Bread",
+          image: "images/pandan-milk-bread.jpg",
+          desc: "Roti lembut beraroma pandan dengan rasa susu yang creamy.",
+        }
+      ],
+      po: [
+        {
+          name: "Roll Cake",
+          image: "images/roll-cake.jpg",
+          desc: "Roll cake lembut dengan berbagai varian rasa untuk momen spesial.",
+          poDate: "15 Juni 2025 - 20 Juni 2025"
+        },
+        {
+          name: "Hampers",
+          image: "images/hampers.jpg",
+          desc: "Paket kue spesial untuk hadiah, isi beragam kue Korea favorit.",
+          poDate: "10 Juli 2025 - 25 Juli 2025"
+        },
+        {
+          name: "Dalgona Candy",
+          image: "images/dalgona-candy.jpg",
+          desc: "Permen gula tradisional Korea yang manis dan renyah, limited edition.",
+          poDate: "20 Mei 2025 - 30 Mei 2025"
+        }
+      ]
+    };
+
+    const tabs = document.querySelectorAll('.menu-tab');
+    const menuList = document.getElementById('menu-list');
+
+    function renderMenu(category) {
+      menuList.innerHTML = '';
+      menus[category].forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-card';
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" />
+          <div class="menu-content">
+            <h3 class="menu-title">${item.name}</h3>
+            <p class="menu-desc">${item.desc}</p>
+            ${item.poDate ? `<div class="menu-po-date">Tanggal PO: ${item.poDate}</div>` : ''}
+          </div>
+        `;
+        menuList.appendChild(card);
+      });
+    }
+
+    // Event listener untuk tab
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderMenu(tab.getAttribute('data-menu'));
+      });
+    });
+
+    // Render default category (tteok)
+    renderMenu('tteok');
+  </script>
+</body>
+</html>
