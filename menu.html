@@ -1,277 +1,487 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu BakeUri | Korean Cake</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Container utama */
-    .menu-container {
-      max-width: 1100px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Menu BakeUri | Korean Cake</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Container utama */
+        .menu-container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* Header halaman */
-    h1 {
-      text-align: center;
-      color: #d6336c;
-      margin-bottom: 2rem;
-    }
+        /* Breadcrumb */
+        .breadcrumb {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .breadcrumb a {
+            color: #d6336c;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
 
-    /* Sidebar sub-menu */
-    .menu-sidebar {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-    .menu-tab {
-      cursor: pointer;
-      padding: 0.6rem 1.5rem;
-      border-radius: 30px;
-      border: 2px solid #d6336c;
-      background-color: white;
-      color: #d6336c;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      user-select: none;
-    }
-    .menu-tab.active,
-    .menu-tab:hover {
-      background: linear-gradient(135deg, #f28ab2, #d6336c);
-      color: white;
-      box-shadow: 0 6px 14px rgba(242, 138, 178, 0.5);
-      border-color: transparent;
-    }
+        /* Header halaman */
+        h1 {
+            text-align: center;
+            color: #d6336c;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(214, 51, 108, 0.1);
+        }
 
-    /* Container daftar menu */
-    .menu-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.8rem;
-    }
+        /* Sidebar sub-menu */
+        .menu-sidebar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        
+        .menu-tab {
+            cursor: pointer;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            border: 2px solid #d6336c;
+            background-color: white;
+            color: #d6336c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f28ab2, #d6336c);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .menu-tab.active::before,
+        .menu-tab:hover::before {
+            left: 0;
+        }
+        
+        .menu-tab.active,
+        .menu-tab:hover {
+            color: white;
+            box-shadow: 0 6px 14px rgba(242, 138, 178, 0.5);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
 
-    /* Kartu menu item */
-    .menu-card {
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(214, 51, 108, 0.15);
-      background: white;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
-    }
-    .menu-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(214, 51, 108, 0.3);
-    }
+        /* Back button */
+        .back-button {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #98ffb3;
+            color: #004d00;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #4caf50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
 
-    .menu-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
+        .back-button:hover {
+            background-color: #70d68c;
+            color: white;
+            border-color: #2e7d32;
+            transform: translateY(-50%) translateY(-2px);
+        }
 
-    .menu-content {
-      padding: 1rem 1.3rem 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+        /* Container daftar menu */
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
 
-    .menu-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
-      color: #d6336c;
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .menu-desc {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-      line-height: 1.4;
-    }
+        /* Kartu menu item */
+        .menu-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(214, 51, 108, 0.15);
+            background: white;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(242, 138, 178, 0.1), rgba(214, 51, 108, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(214, 51, 108, 0.4);
+        }
 
-    /* Styling khusus untuk tanggal PO */
-    .menu-po-date {
-      margin-top: 0.7rem;
-      font-size: 0.9rem;
-      color: #d6336c;
-      font-weight: 600;
-    }
-    /* Tombol Pesan Sekarang mint di sebelah kanan */
-.order-button {
-  margin-left: auto;
-  background-color: #98ffb3; /* warna mint */
-  color: #004d00;
-  padding: 0.6rem 1.5rem;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 2px solid #4caf50;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  user-select: none;
-}
+        .menu-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-card:hover img {
+            transform: scale(1.1);
+        }
 
-.order-button:hover {
-  background-color: #70d68c;
-  color: white;
-  border-color: #2e7d32;
-}
-  </style>
+        .menu-content {
+            padding: 1rem 1.3rem 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #d6336c;
+        }
+
+        .menu-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            line-height: 1.4;
+        }
+
+        /* Styling khusus untuk tanggal PO */
+        .menu-po-date {
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: #d6336c;
+            font-weight: 600;
+            background-color: rgba(214, 51, 108, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        /* Tombol Pesan Sekarang mint di sebelah kanan */
+        .order-button {
+            margin-left: auto;
+            background-color: #98ffb3;
+            color: #004d00;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #4caf50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .order-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: #70d68c;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .order-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .order-button:hover {
+            color: white;
+            border-color: #2e7d32;
+            transform: translateY(-2px);
+        }
+
+        /* Loading animation untuk menu cards */
+        .menu-card {
+            animation: slideInFromBottom 0.6s ease forwards;
+            animation-delay: calc(var(--delay) * 0.1s);
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .menu-sidebar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-button {
+                position: static;
+                transform: none;
+                margin-bottom: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="menu-container">
-    <h1>Menu BakeUri</h1>
-    <div class="menu-sidebar">
-      <div class="menu-tab active" data-menu="tteok">Tteok Series (Kue Beras Korea)</div>
-      <div class="menu-tab" data-menu="street">Street Bakery</div>
-      <div class="menu-tab" data-menu="cafe">Cafe Style Korean Bread</div>
-      <div class="menu-tab" data-menu="po">Seasonal & PO Only</div>
-      <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan.
-" target="_blank" class="order-button">Pesan Sekarang</a>
+    <div class="menu-container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">🏠 Beranda</a> > <span>Menu</span>
+        </div>
+        
+        <h1>🍰 Menu BakeUri</h1>
+        <div class="menu-sidebar">
+            <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+            <div class="menu-tab active" data-menu="tteok">Tteok Series (Kue Beras Korea)</div>
+            <div class="menu-tab" data-menu="street">Street Bakery</div>
+            <div class="menu-tab" data-menu="cafe">Cafe Style Korean Bread</div>
+            <div class="menu-tab" data-menu="po">Seasonal & PO Only</div>
+            <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan." 
+               target="_blank" 
+               class="order-button">💬 Pesan Sekarang</a>
+        </div>
+
+        <div id="menu-list" class="menu-list">
+            <!-- Daftar menu akan muncul di sini -->
+        </div>
     </div>
 
-    <div id="menu-list" class="menu-list">
-      <!-- Daftar menu akan muncul di sini -->
-    </div>
-  </div>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan." 
+       target="_blank" 
+       class="whatsapp-float" 
+       id="whatsapp-float">
+        <div class="whatsapp-icon">💬</div>
+        <span class="whatsapp-text">Chat Admin</span>
+    </a>
 
-  <script>
-    const menus = {
-      tteok: [
-        {
-          name: "Injeolmi",
-          image: "images/injeolmi.jpg",
-          desc: "Kue beras tradisional Korea dengan taburan kacang kedelai panggang yang harum dan tekstur kenyal.",
-        },
-        {
-          name: "Songpyeon",
-          image: "images/songpyeon.jpg",
-          desc: "Kue beras berbentuk setengah bulan yang diisi dengan pasta kacang manis, khas saat Chuseok.",
-        },
-        {
-          name: "Baekseolgi",
-          image: "images/baekseolgi.jpg",
-          desc: "Kue beras kukus putih yang lembut dan ringan, cocok untuk berbagai acara spesial.",
-        },
-        {
-          name: "Mugwort Tteok",
-          image: "images/mugwort-tteok.jpg",
-          desc: "Kue beras hijau alami dengan ekstrak mugwort yang menyehatkan dan rasa unik.",
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <span>↑</span>
+    </button>
+
+    <script>
+        const menus = {
+            tteok: [
+                {
+                    name: "Injeolmi",
+                    image: "images/injeolmi.jpg",
+                    desc: "Kue beras tradisional Korea dengan taburan kacang kedelai panggang yang harum dan tekstur kenyal.",
+                },
+                {
+                    name: "Songpyeon",
+                    image: "images/songpyeon.jpg",
+                    desc: "Kue beras berbentuk setengah bulan yang diisi dengan pasta kacang manis, khas saat Chuseok.",
+                },
+                {
+                    name: "Baekseolgi",
+                    image: "images/baekseolgi.jpg",
+                    desc: "Kue beras kukus putih yang lembut dan ringan, cocok untuk berbagai acara spesial.",
+                },
+                {
+                    name: "Mugwort Tteok",
+                    image: "images/mugwort-tteok.jpg",
+                    desc: "Kue beras hijau alami dengan ekstrak mugwort yang menyehatkan dan rasa unik.",
+                }
+            ],
+            street: [
+                {
+                    name: "Hotteok",
+                    image: "images/hotteok.jpg",
+                    desc: "Pancake manis isi gula merah dan kacang, favorit jajanan jalanan Korea.",
+                },
+                {
+                    name: "Bungeoppang",
+                    image: "images/bungeoppang.jpg",
+                    desc: "Kue ikan berbentuk ikan dengan isi kacang merah manis, hangat dan renyah.",
+                },
+                {
+                    name: "Kkwabaegi",
+                    image: "images/kkwabaegi.jpg",
+                    desc: "Donat tradisional Korea berpilin dengan taburan gula halus yang lezat.",
+                },
+                {
+                    name: "Croffle versi Korea",
+                    image: "images/croffle.jpg",
+                    desc: "Perpaduan croissant dan waffle dengan tekstur renyah dan lembut.",
+                }
+            ],
+            cafe: [
+                {
+                    name: "Cream Cheese Garlic Bread",
+                    image: "images/cream-cheese-garlic-bread.jpg",
+                    desc: "Roti lembut dengan baluran cream cheese dan aroma bawang putih yang menggoda.",
+                },
+                {
+                    name: "Mochi Bread",
+                    image: "images/mochi-bread.jpg",
+                    desc: "Roti kenyal ala mochi dengan isian manis yang meleleh di mulut.",
+                },
+                {
+                    name: "Soboro-ppang",
+                    image: "images/soboro-ppang.jpg",
+                    desc: "Roti manis dengan topping remah-remah renyah khas Korea.",
+                },
+                {
+                    name: "Sweet Potato Bread",
+                    image: "images/sweet-potato-bread.jpg",
+                    desc: "Roti isi ubi manis yang lembut dan gurih.",
+                },
+                {
+                    name: "Pandan Milk Bread",
+                    image: "images/pandan-milk-bread.jpg",
+                    desc: "Roti lembut beraroma pandan dengan rasa susu yang creamy.",
+                }
+            ],
+            po: [
+                {
+                    name: "Roll Cake",
+                    image: "images/roll-cake.jpg",
+                    desc: "Roll cake lembut dengan berbagai varian rasa untuk momen spesial.",
+                    poDate: "15 Juni 2025 - 20 Juni 2025"
+                },
+                {
+                    name: "Hampers",
+                    image: "images/hampers.jpg",
+                    desc: "Paket kue spesial untuk hadiah, isi beragam kue Korea favorit.",
+                    poDate: "10 Juli 2025 - 25 Juli 2025"
+                },
+                {
+                    name: "Dalgona Candy",
+                    image: "images/dalgona-candy.jpg",
+                    desc: "Permen gula tradisional Korea yang manis dan renyah, limited edition.",
+                    poDate: "20 Mei 2025 - 30 Mei 2025"
+                }
+            ]
+        };
+
+        const tabs = document.querySelectorAll('.menu-tab');
+        const menuList = document.getElementById('menu-list');
+
+        function renderMenu(category) {
+            menuList.innerHTML = '';
+            menuList.style.opacity = '0';
+            
+            setTimeout(() => {
+                menus[category].forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'menu-card';
+                    card.style.setProperty('--delay', index);
+                    card.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDI4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyODAiIGhlaWdodD0iMTgwIiBmaWxsPSIjRjNGNEY2Ii8+Cjx0ZXh0IHg9IjE0MCIgeT0iOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY3NzI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+SW1hZ2UgdW5hdmFpbGFibGU8L3RleHQ+Cjwvc3ZnPgo='" />
+                        <div class="menu-content">
+                            <h3 class="menu-title">${item.name}</h3>
+                            <p class="menu-desc">${item.desc}</p>
+                            ${item.poDate ? `<div class="menu-po-date">📅 Tanggal PO: ${item.poDate}</div>` : ''}
+                        </div>
+                    `;
+                    menuList.appendChild(card);
+                });
+                
+                menuList.style.opacity = '1';
+            }, 200);
         }
-      ],
-      street: [
-        {
-          name: "Hotteok",
-          image: "images/hotteok.jpg",
-          desc: "Pancake manis isi gula merah dan kacang, favorit jajanan jalanan Korea.",
-        },
-        {
-          name: "Bungeoppang",
-          image: "images/bungeoppang.jpg",
-          desc: "Kue ikan berbentuk ikan dengan isi kacang merah manis, hangat dan renyah.",
-        },
-        {
-          name: "Kkwabaegi",
-          image: "images/kkwabaegi.jpg",
-          desc: "Donat tradisional Korea berpilin dengan taburan gula halus yang lezat.",
-        },
-        {
-          name: "Croffle versi Korea",
-          image: "images/croffle.jpg",
-          desc: "Perpaduan croissant dan waffle dengan tekstur renyah dan lembut.",
-        }
-      ],
-      cafe: [
-        {
-          name: "Cream Cheese Garlic Bread",
-          image: "images/cream-cheese-garlic-bread.jpg",
-          desc: "Roti lembut dengan baluran cream cheese dan aroma bawang putih yang menggoda.",
-        },
-        {
-          name: "Mochi Bread",
-          image: "images/mochi-bread.jpg",
-          desc: "Roti kenyal ala mochi dengan isian manis yang meleleh di mulut.",
-        },
-        {
-          name: "Soboro-ppang",
-          image: "images/soboro-ppang.jpg",
-          desc: "Roti manis dengan topping remah-remah renyah khas Korea.",
-        },
-        {
-          name: "Sweet Potato Bread",
-          image: "images/sweet-potato-bread.jpg",
-          desc: "Roti isi ubi manis yang lembut dan gurih.",
-        },
-        {
-          name: "Pandan Milk Bread",
-          image: "images/pandan-milk-bread.jpg",
-          desc: "Roti lembut beraroma pandan dengan rasa susu yang creamy.",
-        }
-      ],
-      po: [
-        {
-          name: "Roll Cake",
-          image: "images/roll-cake.jpg",
-          desc: "Roll cake lembut dengan berbagai varian rasa untuk momen spesial.",
-          poDate: "15 Juni 2025 - 20 Juni 2025"
-        },
-        {
-          name: "Hampers",
-          image: "images/hampers.jpg",
-          desc: "Paket kue spesial untuk hadiah, isi beragam kue Korea favorit.",
-          poDate: "10 Juli 2025 - 25 Juli 2025"
-        },
-        {
-          name: "Dalgona Candy",
-          image: "images/dalgona-candy.jpg",
-          desc: "Permen gula tradisional Korea yang manis dan renyah, limited edition.",
-          poDate: "20 Mei 2025 - 30 Mei 2025"
-        }
-      ]
-    };
 
-    const tabs = document.querySelectorAll('.menu-tab');
-    const menuList = document.getElementById('menu-list');
+        // Event listener untuk tab
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                renderMenu(tab.getAttribute('data-menu'));
+            });
+        });
 
-    function renderMenu(category) {
-      menuList.innerHTML = '';
-      menus[category].forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'menu-card';
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
 
-        card.innerHTML = `
-          <img src="${item.image}" alt="${item.name}" />
-          <div class="menu-content">
-            <h3 class="menu-title">${item.name}</h3>
-            <p class="menu-desc">${item.desc}</p>
-            ${item.poDate ? `<div class="menu-po-date">Tanggal PO: ${item.poDate}</div>` : ''}
-          </div>
-        `;
-        menuList.appendChild(card);
-      });
-    }
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
-    // Event listener untuk tab
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        renderMenu(tab.getAttribute('data-menu'));
-      });
-    });
-
-    // Render default category (tteok)
-    renderMenu('tteok');
-  </script>
+        // Render default category (tteok)
+        renderMenu('tteok');
+    </script>
 </body>
 </html>

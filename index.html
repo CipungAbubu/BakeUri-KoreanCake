@@ -1,175 +1,381 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BakeUri | Korean Cake</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BakeUri | Korean Cake</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">🧁 BakeUri</div>
+            <div class="loading-spinner"></div>
+            <p>Menyiapkan kue Korea terbaik...</p>
+        </div>
+    </div>
 
-  <div id="header-placeholder"></div>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">🧁 BakeUri</div>
+            <nav class="nav" id="main-nav">
+                <a href="#tentang">Tentang</a>
+                <a href="#cara-po">Cara Order</a>
+                <a href="#testimoni">Testimoni</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Kontak</a>
+                <a href="#order" class="nav-cta">Pre-Order</a>
+            </nav>
+        </div>
+    </header>
 
-  <script>
-    fetch("header.html")
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById("header-placeholder").innerHTML = data;
-      });
-  </script>
+    <div id="header-placeholder"></div>
+    
+    <!-- Mobile Menu Toggle -->
+    <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-  <section class="hero">
-  <img src="images/Hero1.jpg" alt="Kue Tradisional Korea" class="hero-img" />
-  <div class="hero-text">
-    <h1>Kenikmatan Autentik Kue Korea</h1>
-    <p>
-      BakeUri menghadirkan pengalaman cita rasa Korea yang asli,  
-      dengan kue-kue handmade berkualitas tinggi yang lembut dan menggoda selera.
-    </p>
-    <div class="buttons">
-      <a href="menu.html" class="btn">Lihat Menu</a>
-      <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan." target="_blank" class="btn secondary">Pesan Sekarang</a>
-    </div>
-  </div>
-</section>
+    <section class="hero">
+        <div class="hero-bg-overlay"></div>
+        <img src="images/Hero1.jpg" alt="Kue Tradisional Korea" class="hero-img" />
+        <div class="hero-text">
+            <h1>Kenikmatan Autentik Kue Korea</h1>
+            <p>
+                BakeUri menghadirkan pengalaman cita rasa Korea yang asli, dengan kue-kue handmade berkualitas tinggi yang lembut dan menggoda selera.
+            </p>
+            <div class="buttons">
+                <a href="menu.html" class="btn">Lihat Menu</a>
+                <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan." target="_blank" class="btn secondary">Pesan Sekarang</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow">↓</div>
+            <span>Scroll untuk lebih lanjut</span>
+        </div>
+    </section>
 
-  <section id="tentang" class="section tentang-section">
-  <h3>Tentang BakeUri</h3>
-  <p>
-    BakeUri adalah toko kue spesialis Korean Cake dengan desain estetik dan rasa autentik.  
-    Kami menghadirkan berbagai kue tradisional Korea dan kreasi modern yang nikmat,  
-    sehingga kamu bisa menikmati cita rasa Korea tanpa harus pergi ke sana!  
-    Semua kue dibuat dengan bahan berkualitas dan 100% homemade, bukan kue ulang tahun biasa.
-  </p>
-</section>
+    <section id="tentang" class="section tentang-section">
+        <div class="section-decoration">
+            <div class="decoration-item">🌸</div>
+            <div class="decoration-item">🥮</div>
+            <div class="decoration-item">🌸</div>
+        </div>
+        <h3>Tentang BakeUri</h3>
+        <p>
+            BakeUri adalah toko kue spesialis Korean Cake dengan desain estetik dan rasa autentik. Kami menghadirkan berbagai kue tradisional Korea dan kreasi modern yang nikmat, sehingga kamu bisa menikmati cita rasa Korea tanpa harus pergi ke sana! Semua kue dibuat dengan bahan berkualitas dan 100% homemade, bukan kue ulang tahun biasa.
+        </p>
+        
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Pesanan Selesai</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Varian Kue</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Homemade</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.9★</div>
+                <div class="stat-label">Rating Pelanggan</div>
+            </div>
+        </div>
+    </section>
 
-  <section id="cara-po" class="section" style="background-color: #f9f3ee;">
-  <h3>🛒 Cara Pemesanan di BakeUri</h3> 
-  <p>Sistem pemesanan di BakeUri sangat mudah dan praktis. Berikut langkah-langkahnya:</p>
-  <ol>
-    <li>Pertama, kamu bisa lihat-lihat menu kue Korea yang tersedia di website kami untuk cari yang kamu suka.</li>
-    <li>Setelah itu, kalau sudah cocok, klik tombol “Pesan Sekarang” yang akan langsung mengarahkan kamu ke WhatsApp admin BakeUri.</li>
-    <li>Di WhatsApp, kamu tinggal isi pesan dengan format pesanan, seperti nama kamu, kue yang ingin dipesan, jadwal PO, alamat pengiriman, dan metode pembayaran.</li>
-    <li>Setelah pesan kamu terkirim, admin BakeUri akan segera membalas untuk mengonfirmasi pesanan dan memberikan informasi pembayaran.</li>
-    <li>Lakukan pembayaran sesuai jumlah yang sudah dikonfirmasi, lalu tunggu pesanan kue Korea favoritmu sampai di rumah sesuai jadwal</li>
-  </ol>
-</section>
+    <section id="cara-po" class="section" style="background-color: #f9f3ee;">
+        <h3>🛒 Cara Pemesanan di BakeUri</h3>
+        <p>Sistem pemesanan di BakeUri sangat mudah dan praktis. Berikut langkah-langkahnya:</p>
+        <ol>
+            <li>Pertama, kamu bisa lihat-lihat menu kue Korea yang tersedia di website kami untuk cari yang kamu suka.</li>
+            <li>Setelah itu, kalau sudah cocok, klik tombol "Pesan Sekarang" yang akan langsung mengarahkan kamu ke WhatsApp admin BakeUri.</li>
+            <li>Di WhatsApp, kamu tinggal isi pesan dengan format pesanan, seperti nama kamu, kue yang ingin dipesan, jadwal PO, alamat pengiriman, dan metode pembayaran.</li>
+            <li>Setelah pesan kamu terkirim, admin BakeUri akan segera membalas untuk mengonfirmasi pesanan dan memberikan informasi pembayaran.</li>
+            <li>Lakukan pembayaran sesuai jumlah yang sudah dikonfirmasi, lalu tunggu pesanan kue Korea favoritmu sampai di rumah sesuai jadwal</li>
+        </ol>
+    </section>
 
-   <section id="testimoni" class="section testimoni-section">
-  <h3>Testimoni Pelanggan</h3>
-  <div class="testimoni-scroll">
-    <div class="card-testimoni">
-      <p class="quote">“Cakenya super lembut, manisnya pas, dan desainnya cantik banget 😍”</p>
-      <div class="rating">★★★★★</div>
-      <p class="author">— Ayu, Jakarta</p>
-    </div>
-    <div class="card-testimoni">
-      <p class="quote">“Rasanya autentik, persis kayak kue tradisional Korea yang sering aku lihat di drama!”</p>
-      <div class="rating">★★★★★</div>
-      <p class="author">— Dinda, Bekasi</p>
-    </div>
-    <div class="card-testimoni">
-      <p class="quote">“Kue viral Korea ini benar-benar bikin nagih, teksturnya lembut dan aroma kacangnya khas banget.”</p>
-      <div class="rating">★★★★★</div>
-      <p class="author">— Nia, Tangerang</p>
-    </div>
-    <div class="card-testimoni">
-      <p class="quote">“Suka banget sama varian kue tradisional Korea yang BakeUri punya, rasanya unik dan mantap!”</p>
-      <div class="rating">★★★★★</div>
-      <p class="author">— Rani, Bandung</p>
-    </div>
-    <div class="card-testimoni">
-      <p class="quote">“Pelayanan cepat dan kue selalu fresh. Cocok buat penggemar Korean snacks!”</p>
-      <div class="rating">★★★★☆</div>
-      <p class="author">— Fajar, Surabaya</p>
-    </div>
-    <div class="card-testimoni">
-      <p class="quote">“Buat yang pengen coba kue viral ala Korea, wajib coba BakeUri. Recommended banget!”</p>
-      <div class="rating">★★★★★</div>
-      <p class="author">— Sari, Medan</p>
-    </div>
-  </div>
-</section>
+    <section id="testimoni" class="section testimoni-section">
+        <h3>Testimoni Pelanggan</h3>
+        <div class="testimoni-scroll">
+            <div class="card-testimoni">
+                <p class="quote">"Cakenya super lembut, manisnya pas, dan desainnya cantik banget 😍"</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">— Ayu, Jakarta</p>
+            </div>
+            <div class="card-testimoni">
+                <p class="quote">"Rasanya autentik, persis kayak kue tradisional Korea yang sering aku lihat di drama!"</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">— Dinda, Bekasi</p>
+            </div>
+            <div class="card-testimoni">
+                <p class="quote">"Kue viral Korea ini benar-benar bikin nagih, teksturnya lembut dan aroma kacangnya khas banget."</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">— Nia, Tangerang</p>
+            </div>
+            <div class="card-testimoni">
+                <p class="quote">"Suka banget sama varian kue tradisional Korea yang BakeUri punya, rasanya unik dan mantap!"</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">— Rani, Bandung</p>
+            </div>
+            <div class="card-testimoni">
+                <p class="quote">"Pelayanan cepat dan kue selalu fresh. Cocok buat penggemar Korean snacks!"</p>
+                <div class="rating">★★★★☆</div>
+                <p class="author">— Fajar, Surabaya</p>
+            </div>
+            <div class="card-testimoni">
+                <p class="quote">"Buat yang pengen coba kue viral ala Korea, wajib coba BakeUri. Recommended banget!"</p>
+                <div class="rating">★★★★★</div>
+                <p class="author">— Sari, Medan</p>
+            </div>
+        </div>
+    </section>
 
-<section id="faq" class="section faq-section">
-  <h3>FAQ - Pertanyaan Umum tentang BakeUri</h3>
-  <div class="faq-container">
-    <div class="faq-card">
-      <button class="faq-question">
-        Apakah kue BakeUri halal?
-        <span class="arrow">&#9662;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Ya, semua bahan yang kami gunakan sudah terjamin halal dan diproses dengan standar kebersihan tinggi.</p>
-      </div>
-    </div>
-    <div class="faq-card">
-      <button class="faq-question">
-        Bagaimana cara pemesanan kue di BakeUri?
-        <span class="arrow">&#9662;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Kamu bisa lihat menu di website, lalu klik “Pesan Sekarang” yang mengarahkan ke WhatsApp admin kami. Selanjutnya, isi format pemesanan dan admin akan membantu prosesnya.</p>
-      </div>
-    </div>
-    <div class="faq-card">
-      <button class="faq-question">
-        Apakah kue BakeUri menggunakan bahan alami?
-        <span class="arrow">&#9662;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Semua kue kami dibuat dengan bahan berkualitas dan 100% homemade tanpa bahan pengawet atau pewarna buatan.</p>
-      </div>
-    </div>
-    <div class="faq-card">
-      <button class="faq-question">
-        Apakah ada pengiriman ke seluruh Indonesia?
-        <span class="arrow">&#9662;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Untuk pengiriman saat ini kami melayani area Jabodetabek dan sekitarnya. Kami berencana memperluas pengiriman ke daerah lain.</p>
-      </div>
-    </div>
-    <div class="faq-card">
-      <button class="faq-question">
-        Apakah kue BakeUri bisa dijadikan oleh-oleh atau kado?
-        <span class="arrow">&#9662;</span>
-      </button>
-      <div class="faq-answer">
-        <p>Tentu! Kue kami dikemas dengan cantik dan cocok dijadikan oleh-oleh atau hadiah spesial untuk orang tersayang.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="faq" class="section faq-section">
+        <h3>FAQ - Pertanyaan Umum tentang BakeUri</h3>
+        <div class="faq-container">
+            <div class="faq-card">
+                <button class="faq-question">
+                    Apakah kue BakeUri halal?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, semua bahan yang kami gunakan sudah terjamin halal dan diproses dengan standar kebersihan tinggi.</p>
+                </div>
+            </div>
+            <div class="faq-card">
+                <button class="faq-question">
+                    Bagaimana cara pemesanan kue di BakeUri?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kamu bisa lihat menu di website, lalu klik "Pesan Sekarang" yang mengarahkan ke WhatsApp admin kami. Selanjutnya, isi format pemesanan dan admin akan membantu prosesnya.</p>
+                </div>
+            </div>
+            <div class="faq-card">
+                <button class="faq-question">
+                    Apakah kue BakeUri menggunakan bahan alami?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Semua kue kami dibuat dengan bahan berkualitas dan 100% homemade tanpa bahan pengawet atau pewarna buatan.</p>
+                </div>
+            </div>
+            <div class="faq-card">
+                <button class="faq-question">
+                    Apakah ada pengiriman ke seluruh Indonesia?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Untuk pengiriman saat ini kami melayani area Jabodetabek dan sekitarnya. Kami berencana memperluas pengiriman ke daerah lain.</p>
+                </div>
+            </div>
+            <div class="faq-card">
+                <button class="faq-question">
+                    Apakah kue BakeUri bisa dijadikan oleh-oleh atau kado?
+                    <span class="arrow">&#9662;</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Tentu! Kue kami dikemas dengan cantik dan cocok dijadikan oleh-oleh atau hadiah spesial untuk orang tersayang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  document.querySelectorAll('.faq-question').forEach(button => {
-    button.addEventListener('click', () => {
-      const answer = button.nextElementSibling;
-      const arrow = button.querySelector('.arrow');
-      if (answer.style.maxHeight) {
-        answer.style.maxHeight = null;
-        arrow.style.transform = 'rotate(0deg)';
-      } else {
-        // Tutup semua yang lain
-        document.querySelectorAll('.faq-answer').forEach(ans => ans.style.maxHeight = null);
-        document.querySelectorAll('.arrow').forEach(arr => arr.style.transform = 'rotate(0deg)');
-        // Buka yang ini
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-        arrow.style.transform = 'rotate(180deg)';
-      }
-    });
-  });
-</script>
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <h3>📍 Hubungi Kami</h3>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <p>+62 855-2443-3892</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>hello@bakeuri.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-details">
+                        <h4>Jam Operasional</h4>
+                        <p>Setiap hari: 09:00 - 21:00 WIB</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Area Pengiriman</h4>
+                        <p>Jakarta, Bogor, Depok, Tangerang, Bekasi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section id="order" class="cta">
-    <h3>Yuk, Order Sekarang!</h3>
-    <a href="menu.html" class="btn">Lihat Menu</a>
-  </section>
+    <section id="order" class="cta">
+        <h3>Yuk, Order Sekarang!</h3>
+        <a href="menu.html" class="btn">Lihat Menu</a>
+    </section>
 
-  <footer class="footer">
-    &copy; 2025 BakeUri. Hak cipta dilindungi.
-  </footer>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>BakeUri</h4>
+                <p>Kue Korea Autentik untuk Lidah Indonesia</p>
+            </div>
+            <div class="footer-section">
+                <h4>Social Media</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link">📸 Instagram</a>
+                    <a href="#" class="social-link">📘 Facebook</a>
+                    <a href="#" class="social-link">🎵 TikTok</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#tentang">Tentang</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="#cara-po">Cara Order</a>
+                    <a href="#contact">Kontak</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 BakeUri. Hak cipta dilindungi.
+        </div>
+    </footer>
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/6285524433892?text=Halo%20Admin%20BakeUri%2C%20saya%20mau%20pesan." 
+       target="_blank" 
+       class="whatsapp-float" 
+       id="whatsapp-float">
+        <div class="whatsapp-icon">💬</div>
+        <span class="whatsapp-text">Chat Admin</span>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scroll-to-top">
+        <span>↑</span>
+    </button>
+
+    <script>
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const arrow = button.querySelector('.arrow');
+                
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null;
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    // Close all others
+                    document.querySelectorAll('.faq-answer').forEach(ans => ans.style.maxHeight = null);
+                    document.querySelectorAll('.arrow').forEach(arr => arr.style.transform = 'rotate(0deg)');
+                    
+                    // Open this one
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-img');
+            if (heroImg) {
+                heroImg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        mobileMenuToggle.addEventListener('click', () => {
+            const nav = document.querySelector('.nav');
+            if (nav) {
+                nav.classList.toggle('mobile-active');
+                mobileMenuToggle.classList.toggle('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
